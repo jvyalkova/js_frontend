@@ -1,17 +1,17 @@
 import React from 'react';
-import ToDoTask from './ToDoTask';
-import ToDoTaskAdd from './ToDoTaskAdd'
-
+import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
+import ToDoList from './ToDoList';
+import ToDoTaskAdd from './ToDoTaskAdd';
 class App extends React.Component {
 	constructor(props){
 		super(props);
 		this.state= {
 			tasks: []
 		}
-		
-		this.onTaskDelete = this.onTaskDelete.bind(this);
 		this.onTaskAdd = this.onTaskAdd.bind(this);
+		this.onTaskDelete = this.onTaskDelete.bind(this);
 	}
+	
 	componentDidMount() {
 		fetch('tasks').then(function(res){
 			return res.json();
@@ -21,6 +21,13 @@ class App extends React.Component {
 			});
 		});
 	}
+	
+	onTaskAdd(task) {
+		this.setState({
+			tasks: [...this.state.tasks, task]
+		});
+	}
+	
 	onTaskDelete(_id) {
 		this.setState({
 			tasks: this.state.tasks.filter(function(task){
@@ -28,25 +35,16 @@ class App extends React.Component {
 			})
 		});
 	}
-	onTaskAdd(task) {
-		this.setState({
-			tasks: [...this.state.tasks, task]
-		});
-	}
 	
 	render() {
 		return (
 			<div class ="App">
-				<ToDoTaskAdd onTaskAdd={this.onTaskAdd} />
-				<ul>
-				{
-					this.state.tasks.map((task) => {
-						return (
-							<ToDoTask task={task} onTaskDelete={this.onTaskDelete} key={task._id} />
-						)
-					}) 
-				}
-				</ul>
+				<Router>
+					<Routes>
+						<Route path="/" element={<ToDoList tasks={this.state.tasks} onTaskDelete={this.onTaskDelete} />} />
+						<Route path="/add" element={<ToDoTaskAdd onTaskAdd={this.onTaskAdd} />} />
+					</Routes>
+				</Router>
 			</div>
 		);
 	}
