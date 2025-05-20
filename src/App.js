@@ -17,8 +17,8 @@ class App extends React.Component {
 	render() {
 		return (
 			
-			<div className="row d-flex justify-content-center container">
-				<div className="col-md-8">
+			<div className="row justify-content-center" style={{marginTop: "100px"}}>
+				<div className="col-md-auto">
 					<Provider store={this.props.store}>
 						<Router>
 							<Routes>

@@ -6,7 +6,7 @@ body {
     line-height: 1.5;
     color: #495057;
     text-align: left;
-    background-color: #c47c90;
+    background-color: #422329;
 }
 
 i {
@@ -15,9 +15,14 @@ i {
 
 .container{
     margin-top:100px;
+	display: flex;
+	justify-content: center;
+	padding: 20px;
 }
 
 .card {
+	width: 100%;
+	max-width: 600px;
     box-shadow: 0 0.46875rem 2.1875rem rgba(4, 9, 20, 0.03), 0 0.9375rem 1.40625rem rgba(4, 9, 20, 0.03), 0 0.25rem 0.53125rem rgba(4, 9, 20, 0.05), 0 0.125rem 0.1875rem rgba(4, 9, 20, 0.03);
     border-width: 0;
     transition: all .2s;
