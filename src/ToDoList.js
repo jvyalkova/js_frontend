@@ -10,7 +10,7 @@ class ToDoList extends React.Component {
 			<div className="card-hover-shadow-2x mb-3 card">
 				<div className="card-header-tab card-header">
 				  <div className="card-header-title font-size-lg text-capitalize font-weight-normal">
-					<i className="fa fa-book"></i>&nbsp;Book List
+					<i className="fa fa-tasks"></i>&nbsp;Tasks List
 				  </div>
 				</div>
 				<div className="scroll-area-sm">
@@ -32,7 +32,7 @@ class ToDoList extends React.Component {
 				  </perfect-scrollbar>
 				</div>
 				<div className="d-block text-right card-footer">
-					<NavLink to='/add' className="btn btn-primary"> Add book </NavLink>
+					<NavLink to='/add' className="btn btn-primary"> Add list </NavLink>
 				</div>
 			</div>
 

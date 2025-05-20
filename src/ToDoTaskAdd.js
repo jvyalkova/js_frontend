@@ -49,7 +49,7 @@ class ToDoTaskAddInner extends React.Component {
 			<div className="card-hover-shadow-2x mb-3 card">
 				<div className="card-header-tab card-header">
 					<div className="card-header-title font-size-lg text-capitalize font-weight-normal">
-						<i className="fa fa-book"></i>&nbsp;Add Task
+						<i className="fa fa-tasks"></i>&nbsp;Add Task
 					</div>
 				</div>
 				<form onSubmit={this.onAddFormSubmit} >
