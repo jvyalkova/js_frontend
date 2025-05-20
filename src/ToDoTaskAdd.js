@@ -1,5 +1,7 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, NavLink } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { todoAdd } from './actions';
 
 class ToDoTaskAddInner extends React.Component {
 	constructor(props) {
@@ -38,17 +40,31 @@ class ToDoTaskAddInner extends React.Component {
 		}).then((res) => {
 			return res.json();
 		}).then((data) =>{
-			this.props.onTaskAdd(data);
+			this.props.dispatch(todoAdd(data._id, data.name, data.description));
 			this.props.history('/');
 		}); 
 	}
 	render() {
 		return (
-			<form onSubmit={this.onAddFormSubmit}>
-				<input type="text" value={this.state.name} onChange={this.onNameChange} placeholder="Name"/>
-				<input type="text"value={this.state.description} onChange={this.onDescriptionChange} placeholder="Description"/>
-				<input type="submit" value="Add" />
-			</form>
+			<div className="card-hover-shadow-2x mb-3 card">
+				<div className="card-header-tab card-header">
+					<div className="card-header-title font-size-lg text-capitalize font-weight-normal">
+						<i className="fa fa-tasks"></i>&nbsp;Add Task
+					</div>
+				</div>
+				<form onSubmit={this.onAddFormSubmit}>
+				<div className="widget-content">
+					<div className="widget-content-wrapper">
+						<input type="text" value={this.state.name} onChange={this.onNameChange} placeholder="Name" className="form-control"/>
+						<input type="text"value={this.state.description} onChange={this.onDescriptionChange} placeholder="Description" className="form-control"/>
+						<input type="submit" value="Add" className="btn btn-primary" />
+					</div>
+				</div>
+				</form> 
+				<div className="d-block text-right card-footer">
+					<NavLink to='/' className="btn btn-primary"> Back to list </NavLink>
+				</div>
+			</div>
 		)
 	}
 }
@@ -57,4 +73,4 @@ const ToDoTaskAdd = (props) => {
 		<ToDoTaskAddInner {...props} history={useNavigate()} />
 	)
 }
-export default ToDoTaskAdd;
+export default connect()(ToDoTaskAdd);
